@@ -17,13 +17,19 @@ app.get('/stream/:twitchname', (req, res) => {
         .then(function (data) {
             // var parsed = JSON.parse(data);
             // console.log(parsed)
-            console.log(data[7]);
 
             if (data[0] === undefined) {
                 var q0_resolution = null;
                 var q0_url = null;
 
+                var auto_resolution = null;
+                var auto_url = null;
+
             } else {
+
+                var auto_resolution = `<label class="form-label">auto</label> `;
+                var auto_url = `<input type="text" class="form-control ${data[0].quality}" value="${data[0].url}" id="auto"  >`;
+
 
                 var q0_resolution = `<label class="form-label">${data[0].resolution}</label> `;
                 var q0_url = `<input type="text" class="form-control ${data[0].quality}" value="${data[0].url}" id="${data[0].resolution}"  >`;
@@ -115,6 +121,11 @@ app.get('/stream/:twitchname', (req, res) => {
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
             <div class=".container-fluid">
+            
+            ${auto_resolution}
+            ${auto_url}
+
+
              ${q0_resolution}
              ${q0_url}
 
