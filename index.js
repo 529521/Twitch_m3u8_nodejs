@@ -227,7 +227,7 @@ app.get('/login', (req, res) => {
 
            
             <a id="login"
-            href="https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=http%3A%2F%2Flocalhost%2Ftwitch_api_test%2Fhello%2Fwww%2F&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions">Login</a>
+            href="https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions">Login</a>
             
             
             `)
@@ -255,13 +255,12 @@ app.get('/login/parm', (req, res) => {
 
   <script>
 
-function insert(){
     var parsedHash = new URLSearchParams(window.location.hash.substr(1));
     var access_token = parsedHash.get('access_token');
     $("#acces_token").text(access_token);
     document.getElementById('acces_token').innerHTML = "Some text to enter";
 
-}
+
   </script>
     
     `)
