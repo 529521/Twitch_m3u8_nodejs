@@ -218,7 +218,9 @@ app.get('/stream/direct/:twitchname', (req, res) => {
 app.get('/login', (req, res) => {
 
 
-    res.redirect('https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions');
+    res.redirect('https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows+user:edit:follows+user:read:subscriptions+chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor');
+
+    // <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&amp;client_id=q6batx0epp608isickayubi39itsckt&amp;redirect_uri=https://twitchapps.com/tmi/&amp;scope=chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor" class="btn btn-large btn-primary">Connect</a>
 
 
     // res.send(`
