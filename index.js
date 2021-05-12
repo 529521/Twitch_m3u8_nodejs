@@ -29,7 +29,7 @@ app.get('/stream/:twitchname', (req, res) => {
                 var q0_url = `<input type="text" class="form-control ${data[0].quality}" value="${data[0].url}" id="${data[0].resolution}"  >`;
             }
 
-            
+
             if (data[1] === undefined) {
                 var q1_resolution = null;
                 var q1_url = null;
@@ -218,19 +218,20 @@ app.get('/stream/direct/:twitchname', (req, res) => {
 app.get('/login', (req, res) => {
 
 
+    res.redirect('https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions');
 
 
-    res.send(`
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    // res.send(`
+    //         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    //         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
            
-            <a id="login"
-            href="https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions">Login</a>
+    //         <a id="login"
+    //         href="https://id.twitch.tv/oauth2/authorize?client_id=di5u96cpttmxapibsjpvmyr43x6hn3&redirect_uri=https://twitchm3u8.herokuapp.com/login/parm&response_type=token&scope=user:read:follows%20user:edit:follows%20user:read:subscriptions">Login</a>
             
             
-            `)
+    //         `)
 
 
 
@@ -249,16 +250,48 @@ app.get('/login/parm', (req, res) => {
 
     res.send(`
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+body{
+    background: #0e1111!important;
+color:white!important;
+paddding:30px!important;
+}
+.col{
+    text-align:center!important;
+}
 
+</style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <p id="acces_token"></p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <h2>Acces token</h2>
+            <p>Copy the code below and return to the app</p>
+            <input type="text" id="acces_token"/>
+            <button onclick="myFunction()">Copy token</button>
+
+            </div>
+        </div>
+
+    </div>
 
   <script>
 
+  function myFunction() {
+    var copyText = document.getElementById("acces_token");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
+  }
+
+
+
+
     var parsedHash = new URLSearchParams(window.location.hash.substr(1));
     var access_token = parsedHash.get('access_token');
-    $("#acces_token").text(access_token);
-    document.getElementById('acces_token').innerHTML = "Some text to enter";
+    $("#acces_token").val(access_token);
 
 
   </script>
